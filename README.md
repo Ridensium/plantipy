@@ -37,7 +37,7 @@ It will save minified python files into `/dist/py` directory, and will add `/dis
 
 
 ## Testing
-As some projects later may be hosted and one of the chiepes alternative is cloudflare the web test server is with wrangler a CLI tool for managin Cloudflare Workers.
+As some projects later may be hosted and one of the cheapest alternative is cloudflare the web test server is with wrangler a CLI tool for managin Cloudflare Workers.
 Cloudflare supports from a while python (based on pyodide) so this will prevent for playng with javascrip or other languages/platform on that server part.
 Directory for all of this is `/tests`.
 It contains:
