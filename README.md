@@ -13,13 +13,13 @@ __/full_path__ is path part at your device pointing to the cyted directories.
 ln -s /full_path/external/js /full_path/src/js
 ```
 
-It will make help also if clone pyscript repo as submodule:
+Also will make help for typos if you clone the pyscript repo as submodule:
 
 ```
 git submodule add https://github.com/pyscript/pyscript.git external/pyscript
 ```
 
-and then make symlink of **very** python part of it to src folder of the project keeping its name _pyscript_.
+and then make symlink of the **very** python source part of it - to `/src` directory of your project keeping its name _pyscript_.
 
 ```
 ln -s /full_path/external/pyscript/core/src/stdlib/pyscript /full_path/src/pyscript
