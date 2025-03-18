@@ -1,24 +1,25 @@
 """
 Making docs from the source in markdown
+SHOUD BE RUN FROM PROJECT FOLDER
 """
 
 import os, sys, pdoc
+from pdoc import tpl_lookup
 from unittest.mock import MagicMock
 
-SRC_NAME = 'src' #source folder name in root
-DOCS_NAME = 'docs' #docs folder name in root
 
-CWD = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(CWD)
-SRC = os.path.join(ROOT, SRC_NAME)
-DOCS = os.path.join(ROOT, DOCS_NAME)
+SRC = './src' #source file directory
+DOCS = './docs' #docs directory
+DOC_TEMPL = './docs/doc_templates' #mako doc templates
+
+EXCLUDE = ['pyscript', 'js'] #
 
 # Ensure the 'src' directory is in the Python module search path so no need tu run pdoc there
 sys.path.insert(0, os.path.abspath(SRC))
 
 # Mock external modules you want to exclude
 # neede because pdoc tryes to parse pyscript from there polyscript an so on ...
-EXCLUDE = ['pyscript', 'js'] #these are for Typing reasons here
+
 for e in EXCLUDE:
     sys.modules[e] = MagicMock()
 
@@ -26,6 +27,10 @@ for e in EXCLUDE:
 files = [f for f in os.listdir(SRC) if os.path.isfile(os.path.join(SRC, f))]
 modules = [f[:-3] for f in files if f.endswith('.py')]
 print('Modules', modules)
+
+
+tpl_lookup.directories.insert(0, DOC_TEMPL)
+
 
 context = pdoc.Context()
 
@@ -39,9 +44,9 @@ pdoc.link_inheritance(context)
 # recursively gather module documentation as HTML or Markdown
 def recursive_htmls(mod):
     yield mod.name, mod.text()  # Yield the module's name and text
-    for submod in mod.submodules():
-        if submod.name not in EXCLUDE:
-            yield from recursive_htmls(submod)  # Recursively handle submodules
+    #for submod in mod.submodules():
+    #    if submod.name not in EXCLUDE:
+    #        yield from recursive_htmls(submod)  # Recursively handle submodules
 
 # Create output directory if it doesn't exist
 os.makedirs(DOCS, exist_ok=True)

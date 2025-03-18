@@ -2,30 +2,26 @@
 Minifying source files to dist folder
 as well making zip file of the latter
 usefull especially if lots of comments and docstings for documentation
+https://dflook.github.io/python-minifier/installation.html#
+
+SHOUD BE RUN FROM PROJECT FOLDER
 """
 
 import os, re, shutil, python_minifier
 
-SRC_NAME = 'src' #name of source folder in root
-DIST_NAME = 'dist' #name of distr folder in root
-DIST_PY_NAME = 'py' #folder for distributing minified py files
-ZIP_NAME = 'distro.zip' #name of the zip for distr
+SRC = './src' #source file directory
+DIST = './dist' #distribution directory
+DIST_PY = './dist/py' # minified py files
+DIST_ZIP = './dist/distro.zip' #zip file of minified files
 ZIP_FORMAT = 'zip'
-CWD = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(CWD)
-SRC = os.path.join(ROOT, SRC_NAME)
-DIST = os.path.join(ROOT, DIST_NAME)
-DIST_PY = os.path.join(DIST, DIST_PY_NAME)
-DIST_ZIP = os.path.join(DIST, ZIP_NAME)
-print('root', ROOT)
-print('src', SRC)
-print('dist', DIST)
-print('zip', DIST_ZIP)
 
 
 def minify(source_code:str) -> str:
     """cleans fron documentation strings and minifies with light options"""
-    cleaned_code_doc = re.sub(r'^\s*(\'\'\'|"""|\'\'\'|""").*$', '', source_code, flags=re.MULTILINE)
+    pattern = r'("|\'){3}(?:.|\n)*?("|\'){3}'
+    cleaned_code_doc = re.sub(pattern, "", source_code, flags=re.DOTALL)
+    cleaned_code_doc = re.sub(r'#.*$', '', cleaned_code_doc, flags=re.MULTILINE)
+    print(cleaned_code_doc)
     #cleans docstrings for documentation
     minified_code = python_minifier.minify(
                     cleaned_code_doc,

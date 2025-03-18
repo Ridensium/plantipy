@@ -56,3 +56,32 @@ class DOMRect:
     def toJSON() -> dict:
         pass  # Returns a JSON representation of the DOMRect (often used for serialization).
 
+
+class ArrayBuffer:
+    @classmethod
+    def new()->'ArrayBuffer': #pyscropt constructor of js objects
+        return ArrayBuffer()
+
+
+class Uint8Array:
+    @classmethod
+    def new()->'Uint8Array': #pyscropt constructor of js objects
+        return Uint8Array()
+
+class TextEncoder:
+
+    encoding: str #Always returns utf-8.
+
+    @classmethod
+    def new()->'TextEncoder': #pyscropt constructor of js objects
+        return TextEncoder()
+    
+
+    def encode(self, string:str)->Uint8Array:
+        #Takes a string as input, and returns a Uint8Array containing UTF-8 encoded text.
+        pass
+
+    def encodeInto(self, string:str, uint8Array:Uint8Array)->tuple[int,int]:
+        #Takes a string to encode and a destination Uint8Array to put resulting UTF-8 encoded text into, and returns an object indicating the progress of the encoding. This is potentially more performant than the older encode() method.
+        pass
+
