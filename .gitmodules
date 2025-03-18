@@ -1,0 +1,6 @@
+[submodule "external/pyscript"]
+	path = external/pyscript
+	url = https://github.com/pyscript/pyscript.git
+[submodule "external/micropython"]
+	path = external/micropython
+	url = https://github.com/micropython/micropython.git

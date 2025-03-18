@@ -1,0 +1,9 @@
+.DS_Store
+external/pyscript
+external/pyscript/
+external/pyscript*
+src/pyscript
+src/pyscript/
+src/pyscript*
+tests/node_modules
+src/js
