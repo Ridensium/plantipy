@@ -3,14 +3,15 @@ Making docs from the source in markdown
 SHOUD BE RUN FROM PROJECT FOLDER
 """
 
-import os, sys, pdoc
+import os, sys, pdoc, subprocess
 from pdoc import tpl_lookup
 from unittest.mock import MagicMock
 
 
+
 SRC = './src' #source file directory
 DOCS = './docs' #docs directory
-DOC_TEMPL = './docs/doc_templates' #mako doc templates
+DOC_TEMPL = './_tools/doc_templates' #mako doc templates
 
 EXCLUDE = ['pyscript', 'js'] #
 

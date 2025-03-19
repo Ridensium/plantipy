@@ -7,3 +7,4 @@ src/pyscript/
 src/pyscript*
 tests/node_modules
 src/js
+__pycache__

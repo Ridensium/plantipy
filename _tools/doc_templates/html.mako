@@ -323,7 +323,7 @@
       </ul>
     </li>
     % endif
-
+method
     % if variables:
     <li><h3><a href="#header-variables">Global variables</a></h3>
       ${show_column_list(variables)}
