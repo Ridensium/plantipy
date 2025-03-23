@@ -48,10 +48,17 @@ def main():
     src_len = len(SRC)
     for root, dirs, files in os.walk(SRC, followlinks=False):
        for file in files:
-            if not file.endswith('.py'):
+            
+            if file.endswith('.pyc'):
                 continue
+
             file_path = os.path.join(root, file)
             dest_path = DIST_PY + file_path[src_len:]
+
+            if not file.endswith('.py'):
+                shutil.copyfile(file_path, dest_path)
+            
+
             with open(file_path, 'r') as f:
                 original_source = f.read()
             minified_source = minify(original_source)
