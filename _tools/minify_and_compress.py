@@ -11,8 +11,8 @@ import os, re, shutil, python_minifier
 
 SRC = './src' #source file directory
 DIST = './dist' #distribution directory
-DIST_PY = './dist/py' # minified py files
-DIST_ZIP = './dist/distro.zip' #zip file of minified files
+DIST_PY = './dist/dev_py' # minified py files
+DIST_ZIP = 'dev_distro' #name of the zip file of minified files
 ZIP_FORMAT = 'zip'
 
 
@@ -33,7 +33,7 @@ def minify(source_code:str) -> str:
     return minified_code
 
 
-def compress(source_folder=DIST_PY, destination_folder=DIST, zip_name='distro'):
+def compress(source_folder=DIST_PY, destination_folder=DIST, zip_name=DIST_ZIP):
     # Ensure the destination folder exists
     os.makedirs(destination_folder, exist_ok=True)
     # Full path for the ZIP file (with the .zip extension)

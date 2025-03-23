@@ -53,3 +53,5 @@ class Document(Node, EventTarget):
 
     def getElementsByTagName(tag_name: str) -> list:
         pass  # Returns a list of elements with the specified tag name.
+
+    def createElement(tag:str)->Element:pass

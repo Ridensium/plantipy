@@ -58,18 +58,45 @@ class Node(EventTarget):
     def replaceChild(new_child: "Node", old_child: "Node") -> "Node":
         pass  # Replaces an old child node with a new one.
 
+class Style:
+    fontSize:str
+    color:str
+    display:str
+    flexDirection:str
+    flexWrap:str
+    fontFamily:str
+    backgroundColor:str
 
+
+    textAlign: str; 
+    fontWeight: str; 
+    fontStyle: str; 
+    textSecoration: str; 
+
+    border: str
+
+    width:str
+    height:str
+
+class classList:
+    def add(value:str):pass
+    def remove(value:str):pass
+    def replace(oldToken:str, newToken:str):pass
+    def toggle(value:str):pass
+    def contains(value:str):pass
+
+
+class Dataset: # A dictionary of data attributes (data-*) of the element.
+    pass
 
 class Element(Node):
     # Instance Properties
     tagName: str  # The name of the element (e.g., "DIV", "P").
     id: str  # The ID of the element.
     className: str  # The class name(s) of the element.
-    classList: "DOMTokenList"  # The list of classes of the element.
     localName: str  # The local name of the element.
     namespaceURI: str  # The namespace URI of the element.
     prefix: str  # The namespace prefix for the element.
-    dataset: dict  # A dictionary of data attributes (data-*) of the element.
     dir: str  # The text direction of the element (e.g., "ltr", "rtl").
     lang: str  # The language of the element.
     hidden: bool  # Whether the element is hidden.
@@ -85,6 +112,38 @@ class Element(Node):
     clientLeft: int  # The distance from the left of the element to the left of the content area.
     clientWidth: int  # The width of the element's content area.
     clientHeight: int  # The height of the element's content area.
+
+
+    textContent:str
+    src:str
+    dataset:Dataset
+    onclick:callable
+    classList:classList
+    style:Style
+    parentElement:'Element'
+    children:list['Element']
+    innerHTML:str
+    title:str
+    href:str
+    value:str
+    selectedIndex:str
+    onresize:callable
+    onclick:callable
+    onpointerdown:callable
+    onchange:callable
+    onscroll:callable
+    onkeydown:callable
+    onkeyup:callable
+
+    def append(element:'Element')->None:pass
+    def prepend(element:'Element'):pass
+    def hasOwnProperty(arg:str)->bool:pass
+    def cloneNode(arg:bool)->'Element':pass
+    def remove()->None:pass
+    def getElementById(arg:str)->'Element':pass
+    def replaceWith(element:'Element'):pass
+
+
 
     # Instance Methods
     def getAttribute(name: str) -> str:

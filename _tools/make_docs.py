@@ -10,7 +10,7 @@ from unittest.mock import MagicMock
 
 
 SRC = './src' #source file directory
-DOCS = './docs' #docs directory
+DOCS = './docs/dev_docs' #docs directory
 DOC_TEMPL = './_tools/doc_templates' #mako doc templates
 
 EXCLUDE = ['pyscript', 'js'] #
