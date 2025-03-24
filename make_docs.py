@@ -125,19 +125,28 @@ class Object:
     """super class for all objects"""
     heading:int = 3
     template = OBJECT_TEMPLATE
+
+
     def __init__(self, name, obj, type='object'):
         doc = inspect.getdoc(obj)
         source = inspect.getsource(obj)
-        signature = inspect.signature(obj)
+        signature = str(inspect.signature(obj))
         self.name = name
         self.source = source
         self.signature = signature
         parsed_doc = parse_docstrings(doc)
+
+        if signature.endswith(')'):
+            signature=f'[{signature[1:-1]}]'
+        else:
+            signature = '[' + re.sub(r'\)\s*->', '] -> ', signature[1:])
+
+
         self.doc = self.template.format(
             heading = '#'*self.heading,
             type=type,
             name=name.replace('_', '\_'), #bec md
-            signature=f'[{str(signature)[1:-1]}]',
+            signature=signature,
             info=parsed_doc,
             source=parse_source(source))  
 
