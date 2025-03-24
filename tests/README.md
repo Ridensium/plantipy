@@ -2,7 +2,10 @@
 
 The setup for testing the project with with cloudflare python workers is in `/tests/wrangler`.
 
-`RUN_SERVER.py` **starts** the wrangler worker as web server on your local ip (not just localhost) in secure context. It also when runs adds symlincs of the `/src` and `/dist` directories to the `assets` directory of the web server runing. The `assets` directory is hosted at the very root so for example `/src/module.py` will be accessable at `https://192.168.0.2/src/module.py` (the ip adress if for the example). To make things easier whats in `/src` is also avaivable at the root so the same file will be at `https://192.168.0.2/module.py` as well.
+`RUN_SERVER.py` **starts** the wrangler worker as web server on your local ip (not just localhost) in secure context. It also when runs adds symlincs of the `/src` and `/dist` directories to the `assets` directory of the web server runing.
+
+The `assets` directory is hosted at the very root so for example `/src/module.py` will be accessable at `https://192.168.0.2/src/module.py` (the ip adress if for the example). To make things easier whats in `/src` is also avaivable at the root so the same file will be at `https://192.168.0.2/module.py` as well.
+
 
 
 `wrangler.toml` settings for running the server
