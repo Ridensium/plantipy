@@ -10,11 +10,17 @@ The `assets` directory is hosted at the very root so for example `/src/module.py
 
 `wrangler.toml` settings for running the server
 
+
 `wrangler_worker/wrangler.py` the very server worker as simple possible
 
-`assets/index.html` the index web page of the website with script tag `<script type="mpy" src="index.py" config="config.toml" terminal></script>` to start pyscript with the specified attributes.
+
+`assets/index.html` the index web page of the website with script tag
+`<script type="mpy" src="index.py" config="config.toml" terminal></script>`
+to start pyscript with the specified attributes.
+
 
 `assets/index.py` the pyscript python file loaded in the script tag above by default, you can change it giving even some entry point from the source of your project.
+
 
 `assets/config.toml` the pyscript settings
 
