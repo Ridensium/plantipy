@@ -6,7 +6,7 @@ The purpose of it is to ease the set up, typing autosugesttion and testing of pr
 
 ## Better typing and autosuggestion
 
-- `/external_pyscript.py` will add pyscript repo as submodule here in the `/external/pyscript` directory, and will add symlink of python package there as `/src/pyscript`. Symlincs are not pulled from git but to be on save side that is in `.gitignore`
+- `/external_pyscript.py` will add pyscript repo as submodule here in the `/external/pyscript` directory, and will add symlink of python package there as `/src/pyscript`. Symlincs are not seen from git but to be on save side that is in `.gitignore`
 
 - Pyscript has module `js` for the javascript global namespace, imported with `import js`. If you plan to use it plantipy comes with package inside `/external/js` which covers most of js objects as dummy python classes with lots of classes and attributes there. With `/external_js.py` you can add an symlink from that package as `/src/js` to your project.
 
