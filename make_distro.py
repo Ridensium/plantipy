@@ -1,27 +1,35 @@
 """
-Minifying source files to dist folder
-as well making zip file of the latter
-usefull especially if lots of comments and docstings for documentation
+Minifying source files to dist folder as well compresing them in a zip file
+
+requirements:
 https://dflook.github.io/python-minifier/installation.html#
 
-SHOUD BE RUN FROM PROJECT FOLDER
+---
+plantipy - @Ridensium - 2005
 """
 
 import os, re, shutil, python_minifier
 
-SRC = './src' #source file directory
-DIST = './dist' #distribution directory
-DIST_PY = './dist/dev_py' # minified py files
-DIST_ZIP = 'dev_distro' #name of the zip file of minified files
+#source file directory
+SRC = './src'
+
+#draft distribution directory
+DIST = './dist/dev'
+
+# minified py files
+DIST_PY = './dist/dev/py'
+
+#name of the zip file of minified files
+DIST_ZIP = 'distro' 
 ZIP_FORMAT = 'zip'
 
 
 def minify(source_code:str) -> str:
-    """cleans fron documentation strings and minifies with light options"""
+    """cleans from documentation strings and minifies with light options"""
     pattern = r'("|\'){3}(?:.|\n)*?("|\'){3}'
     cleaned_code_doc = re.sub(pattern, "", source_code, flags=re.DOTALL)
     cleaned_code_doc = re.sub(r'#.*$', '', cleaned_code_doc, flags=re.MULTILINE)
-    print(cleaned_code_doc)
+    
     #cleans docstrings for documentation
     minified_code = python_minifier.minify(
                     cleaned_code_doc,
@@ -41,6 +49,7 @@ def compress(source_folder=DIST_PY, destination_folder=DIST, zip_name=DIST_ZIP):
     # Compress the source folder to the zip file at the specified destination
     shutil.make_archive(zip_path, ZIP_FORMAT, source_folder)
     print('ZIP', zip_path, ZIP_FORMAT)
+
 
 def main():
     """loop the code in `SRC` without the links/symlinks in it"""
@@ -73,4 +82,6 @@ def main():
     compress()
 
 
-main()
+
+if __name__ == "__main__":
+    main()

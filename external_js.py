@@ -1,3 +1,7 @@
+"""
+adding symlink if external/js to src/js
+"""
+
 import os
 
 EXTERNAL_JS = os.path.abspath('external/js')

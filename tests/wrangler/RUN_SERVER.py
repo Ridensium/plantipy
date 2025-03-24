@@ -1,6 +1,8 @@
 """
 Start up of the wrangler dev server in the direcory of that script
 
+IMPORTANT: To not mess if running other python scripts if usung VSC for example use the option **<Run the Python File in Dedicated Terminal>**
+
 [wrangler configuration](https://developers.cloudflare.com/workers/wrangler/configuration/)
 [wrangler commands](https://developers.cloudflare.com/workers/wrangler/commands/#dev)
 """
