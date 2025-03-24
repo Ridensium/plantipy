@@ -2,11 +2,14 @@
 
 The setup for testing the project with with cloudflare python workers is in `/tests/wrangler`.
 
+#### Usage
+
 `RUN_SERVER.py` **starts** the wrangler worker as web server on your local ip (not just localhost) in secure context. It also when runs adds symlincs of the `/src` and `/dist` directories to the `assets` directory of the web server runing.
 
 The `assets` directory is hosted at the very root so for example `/src/module.py` will be accessable at `https://192.168.0.2/src/module.py` (the ip adress if for the example). To make things easier whats in `/src` is also avaivable at the root so the same file will be at `https://192.168.0.2/module.py` as well.
 
 
+#### Configuration and assets
 
 `wrangler.toml` settings for running the server
 
@@ -25,6 +28,8 @@ to start pyscript with the specified attributes.
 `assets/config.toml` the pyscript settings
 
 
+#### Requirements
+
 To use all of that you will need the *cloudflare wrangler cli*.
 
 You can install the **wrangler** using **npm**, which requires **Node.js**. If you don't have the latter, you can download and install it from [nodejs.org](nodejs.org). 
@@ -37,7 +42,7 @@ npm install -g wrangler
 
 You do not need an account in cloudflare to use it.
 
-More about:
+#### More info
 
 [wrangler dec cli](https://developers.cloudflare.com/workers/wrangler/commands/#dev)
 
