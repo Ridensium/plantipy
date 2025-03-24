@@ -2,7 +2,7 @@
 
 Template repository for [pyscript](https://pyscript.net) small projects.
 
-The purpose of it is to ease the set up, typos and testing of small projects, developed locally.
+The purpose of it is to ease the set up, typing autosugesttion and testing of projects, developed locally.
 
 ## Better typing and autosuggestion
 
