@@ -14,36 +14,51 @@ SRC = './src'
 DOCS = './docs/dev_docs'
 
 # excluded packages
-EXCLUDE = ['pyscript', 'js']
+EXCLUDE = ['pyscript', 'js', 'window', 'navigator', 'document']
 
 # template for all objects
-OBJECT_TEMPLATE = """{heading} *{type}*:  {name}{signature}
-{info}
-<details><summary><sub>expand source</sub></summary>
+OBJECT_TEMPLATE = """{heading} *{type}*:  {name}()
+
+<details><summary>{signature}</summary>
+
 
   ```python
 {source}
   ```
 
+
 </details>
+
+
+{info}
+
 
 """
 
 # template for modules
 MODULE_TEMPLATE = """## {name}
+
 {info}
 
 {classes}
 
 {functions}
+
 """
 
 
 # template for the package index
 PACKAGE_TEMPLATE = """## {name}
+
 {info}
+
+
 Modules docs:
+
+
 {modules}
+
+
 """
 
 
@@ -69,8 +84,13 @@ def parse_docstrings(text):
     for l in range(len(lines)):
         line = lines[l]
         if len(line) > 0:
+            #clean empty at begining
             line = re.sub(pattern_begin_line, '', line, flags=re.DOTALL)
-            lines[l] = f'> {line}' if line not in ['[!NOTE]', '[!TIP]','[!IMPORTANT]','[!WARNING]','[!CAUTION]'] else f'\n> {line}'
+       
+            # to make texts as quotes but
+            #lines[l] = f'> {line}' if line in ['[!NOTE]', '[!TIP]','[!IMPORTANT]','[!WARNING]','[!CAUTION]'] else f'\n> {line}'
+    
+    
     return '\n'.join(lines)
 
 # clean the source for the expand section
@@ -86,7 +106,7 @@ class Package:
     def __init__(self, name, obj):
         doc = inspect.getdoc(obj)
        
-        modules = [Module(name, obj) for name, obj in inspect.getmembers(obj, inspect.ismodule)]
+        modules = [Module(name, obj) for name, obj in inspect.getmembers(obj, inspect.ismodule) if name not in EXCLUDE]
         
         file_path = os.path.join(DOCS, f'_{name}_.md')
         
@@ -103,7 +123,7 @@ class Package:
 
 class Object:
     """super class for all objects"""
-    heading:int = 4
+    heading:int = 3
     template = OBJECT_TEMPLATE
     def __init__(self, name, obj, type='object'):
         doc = inspect.getdoc(obj)
@@ -116,8 +136,8 @@ class Object:
         self.doc = self.template.format(
             heading = '#'*self.heading,
             type=type,
-            name=name,
-            signature=signature,
+            name=name.replace('_', '\_'), #bec md
+            signature=f'[{str(signature)[1:-1]}]',
             info=parsed_doc,
             source=parse_source(source))  
 
@@ -127,8 +147,8 @@ class Module:
         self.name = name
         self.obj = obj
         doc = inspect.getdoc(obj)
-        classes = [Class(name, _obj) for name, _obj in inspect.getmembers(obj, inspect.isclass)]
-        functions = [Function(name, _obj) for name, _obj in inspect.getmembers(obj, inspect.isfunction)]
+        classes = [Class(name, _obj) for name, _obj in inspect.getmembers(obj, inspect.isclass) if _obj.__module__ == obj.__name__]
+        functions = [Function(name, _obj) for name, _obj in inspect.getmembers(obj, inspect.isfunction)  if _obj.__module__ == obj.__name__]
    
         file_path = os.path.join(DOCS, f'{name}.md')
         

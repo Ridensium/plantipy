@@ -66,6 +66,7 @@ def main():
 
             if not file.endswith('.py'):
                 shutil.copyfile(file_path, dest_path)
+                continue
             
 
             with open(file_path, 'r') as f:
