@@ -20,7 +20,7 @@ SRC:str = './src'
 DOCS:str = './docs/dev_docs'
 
 # excluded packages
-EXCLUDE:list = ['pyscript', 'js', 'window', 'navigator', 'document']
+EXCLUDE:list = ['pyscript', 'js', 'window', 'navigator', 'document', 'pyscript.ffi']
 
 # template for all objects
 OBJECT_TEMPLATE:str = """{heading} *{type}*:  {name}()
